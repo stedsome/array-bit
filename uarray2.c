@@ -12,9 +12,16 @@
 
 #include "uarray2.h"
 
+struct UArray2_T {
+	int width;
+	int height;
+	int size;
+	UArray_T myArray;
+};
+
 #define T UArray2_T
 /*
- * UArray_new () 
+ * UArray_new : initialize a 2D array by given with and height 
  * Parameters - width of 2D array
  *              height of 2D array
  *              element size
@@ -38,7 +45,7 @@ T UArray2_new (int width, int height, int size)
 }
 
 /*
- * UArray2_free ()
+ * UArray2_free : free the allocated memory in heap
  * Parameters - a double pointer to UArray2
  * Return Values - void
  * Checked Runtime Error - passed pointer is NULL
@@ -53,7 +60,9 @@ void UArray2_free (T *uarray2)
 }
 
 /*
- * UArray2_width, UArray2_height and Uarray2_size
+ * UArray2_width : return the width of the 2D array
+ * UArray2_height : return the height of the 2D array
+ * Uarray2_size : return the bytes of the element type
  * Parameter - a pointer to 2D array
  * Return values - the width/height/element_size of the 2D array
  * Check Runtime Error - passed pointer is NULL
@@ -77,7 +86,7 @@ int UArray2_size (T uarray2)
 }
 
 /*
- * UArray2_at
+ * UArray2_at : return a pointer to the element at position (i,j)
  * Parameter - a pointer to 2D array
  *             column index i
  *             row index j
@@ -95,7 +104,10 @@ void *UArray2_at (T uarray2, int i, int j)
 }
 
 /*
- * UArray2_map_row_major & UArray2_map_col_major
+ * UArray2_map_row_major : call the apply function for each element 
+ *                         in the 2D array in row-major-order
+ * UArray2_map_col_major : call the apply function for each element 
+ *                         in the 2D array in column-major-order
  * Parameters - column and row indices (i,j)
  *              function pointer
  *              application-specific pointer
@@ -110,12 +122,9 @@ void UArray2_map_row_major  (T uarray2,
         assert(uarray2);
   
         for (int j = 0; j < uarray2->height; j++) 
-        {
                 for (int i = 0; i < uarray2->width; i++) 
-                {
                         apply(i, j, uarray2, UArray2_at(uarray2, i, j) ,cl);
-                }
-        }
+
         return;
 }
 
@@ -126,12 +135,9 @@ void UArray2_map_col_major  (T uarray2,
         assert(uarray2);
   /*assert(uarray2);*/
         for (int i = 0; i < uarray2->width; i++) 
-        {
                 for (int j = 0; j < uarray2->height; j++) 
-                {
                         apply(i, j, uarray2, UArray2_at(uarray2, i, j) , cl);
-                }
-        }
+
   return;
 }
 
