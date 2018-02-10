@@ -59,7 +59,7 @@ all: test bitVector sudoku unblackedges my_useuarray2 my_usebit2
 
 ## Linking step (.o -> executable program)
 
-test: uarray2.o test.o
+test: uarray2.o bit2.o test.o
 	$(CC) $(LDFLAGS) $^ -o $@ $(LDLIBS)
 
 bitVector: bitVector.o bit2.o

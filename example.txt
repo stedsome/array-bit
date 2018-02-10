@@ -1,0 +1,36 @@
+
+
+myArray = UArray2_new(4, 3, sizeof(int)); 
+/* create a 2D array of integers. Its dimensions are 3 * 4. */
+
+printf("The array's width is %d", UArray2_width(myArray)) 
+/* prints The array's width is 4 */
+
+printf("The array's height is %d", UArray2_height(myArray)) 
+/* prints The array's height is 3 */
+
+printf("Each element in the array has a size of %d bytes") 
+/* prints Each element in the array has a size of 4 bytes 
+ * (on school's server)
+ */
+
+*(*int)UArray2_at(myArray, 3 , 2) = 99 
+/* set the right bottom corner element to 99  */
+
+printf("The right bottom element is %d", *(*int)UArray2_at(myArray, 3 , 2))
+/* prints The right bottom element is 99 */
+
+/* assuming we have set the 2D array to the following values using 
+ * UArray2_at function: 
+ *      1  2  3  4
+ *      5  6  7  8
+ *      9 10 11 99
+ */
+
+// assuming we have defined a user specific apply function that prints 
+// each element if it is not NULL, if it is NULL prints -1
+UArray2_map_row_major(myArray, apply, NULL)
+// prints "1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 99"
+
+UArray2_map_col_major(myArray, apply, NULL)
+// prints "1, 5, 9, 2, 6, 10, 3, 7, 11, 4, 8, 99"
