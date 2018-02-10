@@ -12,10 +12,10 @@
 #include "assert.h"
 #include "except.h"
 
-
+#ifndef BIT2_INCLUDED
+#define BIT2_INCLUDED
 
 #define T Bit2_T
-
 typedef struct T *T;
 
 
@@ -36,3 +36,4 @@ extern void  Bit2_map_col_major(T bit2,
                 void apply(int col, int row, int bit, void *cl),
                 void *cl);
 #undef T
+#endif

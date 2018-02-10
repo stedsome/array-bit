@@ -12,6 +12,13 @@
 
 #include "uarray2.h"
 
+struct UArray2_T {
+	int width;
+	int height;
+	int size;
+	UArray_T myArray;
+};
+
 #define T UArray2_T
 /*
  * UArray_new () 
@@ -110,12 +117,9 @@ void UArray2_map_row_major  (T uarray2,
         assert(uarray2);
   
         for (int j = 0; j < uarray2->height; j++) 
-        {
                 for (int i = 0; i < uarray2->width; i++) 
-                {
                         apply(i, j, uarray2, UArray2_at(uarray2, i, j) ,cl);
-                }
-        }
+
         return;
 }
 
@@ -126,12 +130,9 @@ void UArray2_map_col_major  (T uarray2,
         assert(uarray2);
   /*assert(uarray2);*/
         for (int i = 0; i < uarray2->width; i++) 
-        {
                 for (int j = 0; j < uarray2->height; j++) 
-                {
                         apply(i, j, uarray2, UArray2_at(uarray2, i, j) , cl);
-                }
-        }
+
   return;
 }
 

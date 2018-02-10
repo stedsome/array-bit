@@ -13,17 +13,19 @@
 #include "except.h"
 #include "uarray.h"
 
+/*
 struct UArray2_T {
 	int width;
 	int height;
 	int size;
 	UArray_T myArray;
 };
+*/
 
 #ifndef UARRAY2_INCLUDED
 #define UARRAY2_INCLUDED
-#define T UArray2_T
 
+#define T UArray2_T
 typedef struct T *T;
 
 extern T     UArray2_new (int width, int height, int size);
@@ -34,10 +36,10 @@ extern int   UArray2_size   (T uarray2);
 
 extern void *UArray2_at  (T uarray2, int col, int row);
 
-extern void UArray2_map_row_major  (T uarray2,
+extern void  UArray2_map_row_major  (T uarray2,
 		void apply (int i, int j, T uarray2, void *elem, void *cl),
 		void *cl);
-extern void UArray2_map_col_major  (T uarray2,
+extern void  UArray2_map_col_major  (T uarray2,
 		void apply (int i, int j, T uarray2, void *elem, void *cl),
 		void *cl);	
 
